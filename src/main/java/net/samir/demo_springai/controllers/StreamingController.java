@@ -2,6 +2,7 @@ package net.samir.demo_springai.controllers;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
@@ -16,7 +17,7 @@ public class StreamingController {
 
      }
 
-     @GetMapping("/stream")
+     @GetMapping(value = "/stream", produces = MediaType.TEXT_PLAIN_VALUE)
     public Flux<String> stream(String query) {
          return chatClient.prompt()
                  .user(query)
