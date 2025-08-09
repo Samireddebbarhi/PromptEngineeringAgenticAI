@@ -26,11 +26,11 @@ public class MultiModalController {
                         .media(MediaType.IMAGE_JPEG, image))
                 .call().content();
     }
-    @GetMapping("/askImage")
+    @GetMapping("/askImages")
         public String askImage(String question)
         {
             return chatClient.prompt()
-                    .system("reply to question given by user")
+                    .system("reply to question given by users")
                     .user(u -> u.text(question)
                             .media(MediaType.IMAGE_JPEG,image))
                     .call().content();
