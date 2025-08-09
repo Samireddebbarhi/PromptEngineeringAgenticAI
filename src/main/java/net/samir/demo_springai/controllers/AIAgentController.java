@@ -11,6 +11,8 @@ import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +25,11 @@ import java.util.List;
 
 @RestController
 public class AIAgentController {
+
     private ChatClient chatClient;
     private static final Logger logger = LoggerFactory.getLogger(AIAgentController.class);
 
-    public AIAgentController(ChatClient.Builder builder, ChatMemory memory) {
+    public AIAgentController( ChatClient.Builder builder, ChatMemory memory) {
         this.chatClient = builder.defaultAdvisors(new SimpleLoggerAdvisor()).defaultAdvisors(MessageChatMemoryAdvisor.builder(memory).build()).build();
 
     }
